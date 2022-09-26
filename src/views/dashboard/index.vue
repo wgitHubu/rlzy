@@ -15,6 +15,11 @@ export default {
       'name'
     ])
   }
+  // jia
+  // created() {
+  //   const res = this.$store.dispatch('user/getUserInfo')
+  //   console.log(res)
+  // }
 }
 </script>
 
