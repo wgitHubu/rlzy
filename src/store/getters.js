@@ -5,6 +5,8 @@ const getters = {
   avatar: state => state.user.avatar,
   staffPhoto: state => state.user.userInfo.staffPhoto,
   name: state => state.user.userInfo.username,
-  userId: state => state.user.userInfo.userId // 建立用户id的映射
+  userId: state => state.user.userInfo.userId, // 建立用户id的映射
+  hrsaasTime: state => state.user.hrsaasTime
+
 }
 export default getters

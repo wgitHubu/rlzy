@@ -15,7 +15,7 @@ const store = new Vuex.Store({
   },
   getters,
   plugins: [createPersistedState({
-    paths: ['user.token']
+    paths: ['user.token', 'user.hrsaasTime']
   })]
 })
 
