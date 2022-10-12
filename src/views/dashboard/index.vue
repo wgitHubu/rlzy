@@ -2,6 +2,7 @@
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
     <!-- <svg-icon iconClass="link"></svg-icon> -->
+    <!-- <UploadExcel :on-success="handleSuccess" :before-upload="beforeUpload" /> -->
   </div>
 </template>
 
@@ -14,12 +15,25 @@ export default {
     ...mapGetters([
       'name'
     ])
-  }
+  },
   // jia
   // created() {
   //   const res = this.$store.dispatch('user/getUserInfo')
   //   console.log(res)
   // }
+  methods: {
+    // handleSuccess(data) {
+    //   console.log('data', data)
+    // },
+    // beforeUpload(file) {
+    //   console.log(file)
+    //   if (file.size > 1024) {
+    //     this.$message.error('to Big')
+    //     return false
+    //   }
+    //   return true
+    // }
+  }
 }
 </script>
 
