@@ -16,6 +16,11 @@
       <el-table v-loading="loading" border :data="list">
         <el-table-column label="序号" sortable="" width="80" type="index" />
         <el-table-column label="姓名" prop="username" />
+        <el-table-column label="头像">
+          <template slot-scope="{row}">
+            <img width="100px" height="100px" :src="row.staffPhoto" @click="genQrCode(row.staffPhoto)">
+          </template>
+        </el-table-column>
         <el-table-column label="工号" prop="workNumber" />
         <el-table-column label="聘用形式" prop="formOfEmployment" sortable :formatter="formatterFn" />
         <el-table-column label="部门" prop="departmentName" />
@@ -55,6 +60,14 @@
       </el-row>
     </el-card>
     <addEmployee :dialog-visible.sync="dialogVisible" />
+    <el-dialog
+      title="头像预览"
+      :visible.sync="dialogVisibleQrCode"
+      width="30%"
+    >
+      <canvas ref="canvas" />
+    </el-dialog>
+
   </div>
 </template>
 
@@ -63,6 +76,7 @@ import EmployeeEnum from '@/api/constant/employees'
 import { getEmployeeList, delEmployee } from '@/api/employees'
 import PageTools from '@/components/PageTools/index.vue'
 import addEmployee from './components/add-employee'
+import QRCode from 'qrcode'
 
 // import AddEmployee from './components/add-employee.vue'
 // import employees from '@/router/modules/employees'
@@ -84,7 +98,8 @@ export default {
       total: 0, // 总数
       loading: false, //
       hireType: EmployeeEnum.hireType,
-      dialogVisible: false
+      dialogVisible: false,
+      dialogVisibleQrCode: false
     }
   },
 
@@ -163,6 +178,16 @@ export default {
     },
     goDetail(row) {
       this.$router.push('/employees/detail/' + row.id)
+    },
+    genQrCode(staffPhoto) {
+      if (!staffPhoto) return this.$message.error('暂无头像')
+      this.dialogVisibleQrCode = true
+      this.$nextTick(() => {
+        QRCode.toCanvas(this.$refs.canvas, staffPhoto, function(error) {
+          if (error) console.log(error)
+          console.log('success')
+        })
+      })
     }
   }
 }

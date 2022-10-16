@@ -1,6 +1,8 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
+    <upload-img @on-success="onSuccess1" />
+    <upload-img @on-success="onSuccess2" />
     <!-- <svg-icon iconClass="link"></svg-icon> -->
     <!-- <UploadExcel :on-success="handleSuccess" :before-upload="beforeUpload" /> -->
   </div>
@@ -33,6 +35,12 @@ export default {
     //   }
     //   return true
     // }
+    onSuccess1(val) {
+      console.log('123', val)
+    },
+    onSuccess2(val) {
+      console.log('456', val)
+    }
   }
 }
 </script>
